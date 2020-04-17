@@ -13,10 +13,12 @@ from ...models import MLModel as _MLModel
 from ..._deps import HAS_SKLEARN as _HAS_SKLEARN
 
 if _HAS_SKLEARN:
-    import sklearn
-    from sklearn.preprocessing import Imputer
-    model_type = 'transformer'
-    sklearn_class = sklearn.preprocessing.Imputer
+    from sklearn.impute import SimpleImputer
+    imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
+#     import sklearn
+#     from sklearn.preprocessing import Imputer
+#     model_type = 'transformer'
+#     sklearn_class = sklearn.preprocessing.Imputer
 
 def convert(model, input_features, output_features):
     """Convert a DictVectorizer model to the protobuf spec.
